@@ -7,11 +7,11 @@ import privateImg from "@/assets/event-private.jpg";
 import portraitImg from "@/assets/dj-portrait.jpg";
 
 const images = [
-  { src: heroImg, alt: "DJ Manoj live set", span: "col-span-2 row-span-2" },
+  { src: heroImg, alt: "DJ manoy live set", span: "col-span-2 row-span-2" },
   { src: piazzaImg, alt: "Evento piazza", span: "" },
   { src: weddingImg, alt: "Matrimonio", span: "" },
   { src: privateImg, alt: "Festa privata", span: "col-span-2" },
-  { src: portraitImg, alt: "DJ Manoj portrait", span: "" },
+  { src: portraitImg, alt: "DJ manoy portrait", span: "" },
 ];
 
 const GallerySection = () => {

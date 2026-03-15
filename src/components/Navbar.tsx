@@ -28,7 +28,7 @@ const Navbar = () => {
       />
       <div className="container mx-auto px-6 py-4 flex items-center justify-between relative z-10">
         <a href="#" className="font-display text-xl font-bold tracking-tight text-foreground">
-          DJ MANOJ
+          DJ manoy
         </a>
 
         {/* Desktop */}

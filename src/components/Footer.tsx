@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="border-t border-border/50 py-12">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p className="font-display text-lg font-bold text-foreground">DJ MANOJ</p>
+          <p className="font-display text-lg font-bold text-foreground">DJ manoy</p>
           <p className="text-muted-foreground text-sm font-light mt-1">
             La colonna sonora dei tuoi eventi.
           </p>
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
 
         <p className="text-muted-foreground/50 text-xs font-light">
-          © 2026 DJ Manoj. Tutti i diritti riservati.
+          © 2026 DJ manoy. Tutti i diritti riservati.
         </p>
       </div>
     </footer>

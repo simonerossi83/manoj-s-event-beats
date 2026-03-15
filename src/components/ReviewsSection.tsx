@@ -6,7 +6,7 @@ const reviews = [
   {
     name: "Marco & Giulia",
     event: "Matrimonio",
-    text: "DJ Manoj ha reso il nostro matrimonio indimenticabile. Dal primo ballo all'ultima canzone, tutti i nostri ospiti non hanno mai smesso di ballare!",
+    text: "DJ manoy ha reso il nostro matrimonio indimenticabile. Dal primo ballo all'ultima canzone, tutti i nostri ospiti non hanno mai smesso di ballare!",
     rating: 5,
   },
   {
@@ -18,13 +18,13 @@ const reviews = [
   {
     name: "Alessandra P.",
     event: "Festa Privata",
-    text: "Il mio 30° compleanno è stato il party dell'anno grazie a DJ Manoj. Set perfetto, luci spettacolari e un'energia contagiosa.",
+    text: "Il mio 30° compleanno è stato il party dell'anno grazie a DJ manoy. Set perfetto, luci spettacolari e un'energia contagiosa.",
     rating: 5,
   },
   {
     name: "Luca & Francesca",
     event: "Matrimonio",
-    text: "Ci hanno consigliato DJ Manoj e non potevamo fare scelta migliore. Professionale, attenta ai dettagli e con un gusto musicale impeccabile.",
+    text: "Ci hanno consigliato DJ manoy e non potevamo fare scelta migliore. Professionale, attenta ai dettagli e con un gusto musicale impeccabile.",
     rating: 5,
   },
 ];

@@ -19,7 +19,7 @@ const AboutSection = () => {
             <div className="relative rounded-2xl overflow-hidden event-card">
               <img
                 src={portraitImg}
-                alt="DJ Manoj portrait"
+                alt="DJ manoy portrait"
                 className="w-full aspect-[3/4] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />

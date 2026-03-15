@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImg}
-          alt="DJ Manoj live performance"
+          alt="DJ manoy live performance"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-background/60" />
@@ -32,7 +32,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="h1-display text-foreground mb-8"
         >
-          DJ <span className="gradient-text">MANOJ</span>
+          DJ <span className="gradient-text">manoy</span>
         </motion.h1>
 
         <motion.p
