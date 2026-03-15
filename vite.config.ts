@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  base: mode === 'production' ? '/dj-manoj/' : '/',
+  base: mode === 'production' ? '/manoj-s-event-beats/' : '/',
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
