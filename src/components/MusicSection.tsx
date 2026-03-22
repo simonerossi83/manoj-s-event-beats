@@ -1,18 +1,67 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Play, Pause } from "lucide-react";
 
 const tracks = [
-  { title: "Summer Vibes Mix", duration: "3:45", genre: "Dance / Pop" },
-  { title: "Wedding First Dance", duration: "4:12", genre: "Romantic" },
-  { title: "Festival Banger Set", duration: "5:30", genre: "EDM / House" },
-  { title: "Deep Night Session", duration: "6:15", genre: "Deep House" },
+  { title: "Age Of Love", genre: "Dance / House", src: "/music/Age_Of_Love.mp3" },
+  { title: "Britt Teshyr", genre: "Electronic", src: "/music/Britt-Teshyr.mp3" },
+  { title: "I Just Might", genre: "Pop / R&B", src: "/music/I_Just_Might.mp3" },
+  { title: "Ultra Nate x Hugel", genre: "Dance / Pop", src: "/music/Ultra_Nate_Hugel.mp3" },
 ];
 
 const MusicSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+  const [progress, setProgress] = useState<number[]>(tracks.map(() => 0));
+  const [durations, setDurations] = useState<string[]>(tracks.map(() => ""));
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handlePlay = (index: number) => {
+    if (playingIndex === index) {
+      audioRef.current?.pause();
+      setPlayingIndex(null);
+      return;
+    }
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    const audio = new Audio(tracks[index].src);
+    audioRef.current = audio;
+    audio.play();
+    setPlayingIndex(index);
+
+    audio.addEventListener("timeupdate", () => {
+      setProgress((prev) => {
+        const next = [...prev];
+        next[index] = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+        return next;
+      });
+    });
+    audio.addEventListener("loadedmetadata", () => {
+      const m = Math.floor(audio.duration / 60);
+      const s = Math.floor(audio.duration % 60).toString().padStart(2, "0");
+      setDurations((prev) => {
+        const next = [...prev];
+        next[index] = `${m}:${s}`;
+        return next;
+      });
+    });
+    audio.addEventListener("ended", () => {
+      setPlayingIndex(null);
+      setProgress((prev) => {
+        const next = [...prev];
+        next[index] = 0;
+        return next;
+      });
+    });
+  };
+
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause();
+    };
+  }, []);
 
   return (
     <section id="music" className="py-32 md:py-40" ref={ref}>
@@ -36,37 +85,49 @@ const MusicSection = () => {
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-surface rounded-xl p-5 flex items-center gap-5 group hover:border-primary/30 transition-all duration-300 cursor-pointer"
-              onClick={() => setPlayingIndex(playingIndex === index ? null : index)}
+              className="glass-surface rounded-xl overflow-hidden group hover:border-primary/30 transition-all duration-300 cursor-pointer"
+              onClick={() => handlePlay(index)}
             >
-              <button className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                {playingIndex === index ? (
-                  <Pause size={18} className="text-primary" />
-                ) : (
-                  <Play size={18} className="text-primary ml-0.5" />
-                )}
-              </button>
+              <div className="p-5 flex items-center gap-5">
+                <button className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  {playingIndex === index ? (
+                    <Pause size={18} className="text-primary" />
+                  ) : (
+                    <Play size={18} className="text-primary ml-0.5" />
+                  )}
+                </button>
 
-              <div className="flex-1 min-w-0">
-                <p className="text-foreground font-medium truncate">{track.title}</p>
-                <p className="text-muted-foreground text-sm font-light">{track.genre}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-foreground font-medium truncate">{track.title}</p>
+                  <p className="text-muted-foreground text-sm font-light">{track.genre}</p>
+                </div>
+
+                {/* EQ bars animation */}
+                {playingIndex === index && (
+                  <div className="flex items-end gap-0.5 h-5">
+                    {[0, 0.15, 0.3, 0.1].map((delay, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-1 bg-primary rounded-full"
+                        animate={{ height: ["4px", "20px", "8px", "16px", "4px"] }}
+                        transition={{ repeat: Infinity, duration: 0.8, delay }}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                <span className="text-muted-foreground text-sm font-light">
+                  {durations[index] || "—"}
+                </span>
               </div>
 
-              {/* EQ bars animation */}
-              {playingIndex === index && (
-                <div className="flex items-end gap-0.5 h-5">
-                  {[0, 0.15, 0.3, 0.1].map((delay, i) => (
-                    <motion.div
-                      key={i}
-                      className="w-1 bg-primary rounded-full"
-                      animate={{ height: ["4px", "20px", "8px", "16px", "4px"] }}
-                      transition={{ repeat: Infinity, duration: 0.8, delay }}
-                    />
-                  ))}
-                </div>
-              )}
-
-              <span className="text-muted-foreground text-sm font-light">{track.duration}</span>
+              {/* Progress bar */}
+              <div className="h-0.5 bg-primary/10 w-full">
+                <div
+                  className="h-full bg-primary transition-all duration-300"
+                  style={{ width: `${progress[index]}%` }}
+                />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -77,7 +138,7 @@ const MusicSection = () => {
           transition={{ delay: 0.8 }}
           className="text-center text-muted-foreground/50 text-sm mt-8 font-light"
         >
-          Demo tracks · Contattami per il set completo
+          Clicca su un brano per ascoltarlo · Contattami per il set completo
         </motion.p>
       </div>
     </section>
