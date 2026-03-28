@@ -7,11 +7,11 @@ import privateImg from "@/assets/event-private.jpg";
 import portraitImg from "@/assets/dj-portrait.jpg";
 
 const images = [
-  { src: heroImg, alt: "DJ manoy live set", span: "col-span-2 row-span-2" },
-  { src: piazzaImg, alt: "Evento piazza", span: "" },
-  { src: weddingImg, alt: "Matrimonio", span: "" },
-  { src: privateImg, alt: "Festa privata", span: "col-span-2" },
-  { src: portraitImg, alt: "DJ manoy portrait", span: "" },
+  { src: heroImg, alt: "DJ Amery – live set durante un grande evento", span: "col-span-2 row-span-2" },
+  { src: piazzaImg, alt: "DJ Amery – evento di piazza con migliaia di persone", span: "" },
+  { src: weddingImg, alt: "DJ Amery – musica per matrimonio elegante", span: "" },
+  { src: privateImg, alt: "DJ Amery – festa privata esclusiva", span: "col-span-2" },
+  { src: portraitImg, alt: "DJ Amery – DJ professionista italiano", span: "" },
 ];
 
 const GallerySection = () => {
@@ -31,6 +31,9 @@ const GallerySection = () => {
           <h2 className="h2-section text-foreground">
             Momenti <span className="gradient-text">indimenticabili</span>
           </h2>
+          <p className="text-muted-foreground font-light mt-4 max-w-xl mx-auto">
+            Immagini dai set di DJ Amery: eventi di piazza, matrimoni e feste private in tutta Italia.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">

@@ -1,35 +1,30 @@
-import { Instagram, Music } from "lucide-react";
+import { Youtube, Music } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="border-t border-border/50 py-12">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p className="font-display text-lg font-bold text-foreground">DJ manoy</p>
+          <p className="font-display text-lg font-bold text-foreground">DJ Amery</p>
           <p className="text-muted-foreground text-sm font-light mt-1">
-            La colonna sonora dei tuoi eventi.
+            DJ professionista per matrimoni, eventi di piazza e feste private in Lombardia e Nord Italia.
           </p>
         </div>
 
         <div className="flex items-center gap-6">
           <a
-            href="#"
+            href="https://www.youtube.com/@DJ_Amery"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Instagram"
+            aria-label="YouTube"
           >
-            <Instagram size={20} />
-          </a>
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-primary transition-colors"
-            aria-label="SoundCloud"
-          >
-            <Music size={20} />
+            <Youtube size={20} />
           </a>
         </div>
 
         <p className="text-muted-foreground/50 text-xs font-light">
-          © 2026 DJ manoy. Tutti i diritti riservati.
+          © 2026 DJ Amery. Tutti i diritti riservati.
         </p>
       </div>
     </footer>

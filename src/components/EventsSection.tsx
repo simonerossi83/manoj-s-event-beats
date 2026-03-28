@@ -8,21 +8,21 @@ const events = [
   {
     title: "Eventi di Piazza",
     subtitle: "La piazza esplode",
-    description: "Migliaia di persone, un'unica energia. Set potenti che trasformano ogni piazza nel main stage di un festival.",
+    description: "Migliaia di persone, un'unica energia. DJ Amery gestisce eventi di piazza con set potenti e coinvolgenti, trasformando ogni piazza italiana nel main stage di un festival. Esperienza comprovata con pubblici da 1.000 a 10.000 persone.",
     image: piazzaImg,
     glowClass: "hover:shadow-[0_0_40px_-10px_hsl(220_90%_60%_/_0.4)]",
   },
   {
     title: "Matrimoni",
     subtitle: "L'emozione in musica",
-    description: "Dal primo ballo al party scatenato. Ogni momento del tuo giorno più bello merita la colonna sonora perfetta.",
+    description: "Dal rito civile al party scatenato. DJ Amery firma la colonna sonora del tuo matrimonio: aperitivo, primo ballo, cena e serata danzante. Set personalizzati per ogni coppia, con repertorio concordato nei minimi dettagli.",
     image: weddingImg,
     glowClass: "hover:shadow-[0_0_40px_-10px_hsl(40_90%_55%_/_0.4)]",
   },
   {
     title: "Feste Private",
     subtitle: "Esclusività totale",
-    description: "Compleanni, inaugurazioni, party esclusivi. Set personalizzati che trasformano ogni serata in un evento leggendario.",
+    description: "Compleanni, inaugurazioni, party aziendali ed eventi esclusivi. DJ Amery crea set su misura che trasformano ogni ricorrenza in un evento leggendario, con selezione musicale adattata al pubblico e al contesto.",
     image: privateImg,
     glowClass: "hover:shadow-[0_0_40px_-10px_hsl(330_80%_60%_/_0.4)]",
   },
@@ -41,10 +41,13 @@ const EventsSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
         >
-          <p className="label-uppercase text-primary mb-4">I Miei Eventi</p>
+          <p className="label-uppercase text-primary mb-4">I Miei Servizi</p>
           <h2 className="h2-section text-foreground">
             Tre mondi, un'unica <span className="gradient-text">energia</span>
           </h2>
+          <p className="text-muted-foreground font-light mt-4 max-w-xl mx-auto">
+            DJ Amery è disponibile per ogni tipo di evento: scegli il servizio più adatto alle tue esigenze.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">

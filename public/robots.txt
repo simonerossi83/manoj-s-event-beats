@@ -12,3 +12,15 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# AI crawlers – benvenuti
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://rosai.github.io/manoy-s-event-beats/sitemap.xml

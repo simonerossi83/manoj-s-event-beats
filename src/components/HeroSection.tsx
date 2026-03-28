@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImg}
-          alt="DJ manoy live performance"
+          alt="DJ Amery – performance live, DJ professionista per eventi, matrimoni e feste"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-background/60" />
@@ -23,7 +23,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="label-uppercase text-primary mb-6"
         >
-          Events · Weddings · Private Parties
+          DJ per Matrimoni · Eventi di Piazza · Feste Private · Lombardia e Nord Italia
         </motion.p>
 
         <motion.h1
@@ -41,7 +41,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 font-light"
         >
-          Il ritmo che accende la piazza. L'emozione che firma il tuo sì.
+          DJ Amery trasforma ogni evento in un'esperienza sonora unica.
+          Oltre 10 anni di set live, 500+ eventi in Lombardia e nel Nord Italia tra piazze, matrimoni e feste private.
         </motion.p>
 
         <motion.div

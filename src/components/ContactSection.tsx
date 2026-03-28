@@ -6,11 +6,33 @@ const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setError(false);
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/djamery1980@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        setError(true);
+        setTimeout(() => setError(false), 4000);
+      }
+    } catch {
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+    }
   };
 
   return (
@@ -27,7 +49,8 @@ const ContactSection = () => {
             Riserva la <span className="gradient-text">data</span>
           </h2>
           <p className="text-muted-foreground font-light mt-4">
-            Raccontami il tuo evento. Rispondo entro 24 ore.
+            Hai in mente un evento? Raccontami tutto: tipo di evento, data e luogo.
+            DJ Amery opera in tutta la Lombardia e nel Nord Italia e risponde entro 24 ore con disponibilità e preventivo.
           </p>
         </motion.div>
 
@@ -38,15 +61,21 @@ const ContactSection = () => {
           onSubmit={handleSubmit}
           className="glass-surface rounded-2xl p-8 md:p-12 space-y-6"
         >
+          {/* Campi nascosti Formsubmit */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+
           <div className="grid sm:grid-cols-2 gap-6">
             <input
               type="text"
+              name="nome"
               placeholder="Nome"
               required
               className="input-neon"
             />
             <input
               type="email"
+              name="email"
               placeholder="Email"
               required
               className="input-neon"
@@ -55,10 +84,11 @@ const ContactSection = () => {
           <div className="grid sm:grid-cols-2 gap-6">
             <input
               type="tel"
+              name="telefono"
               placeholder="Telefono"
               className="input-neon"
             />
-            <select className="input-neon" required>
+            <select name="tipo_evento" className="input-neon" required>
               <option value="" className="bg-background">Tipo di evento</option>
               <option value="piazza" className="bg-background">Evento di Piazza</option>
               <option value="matrimonio" className="bg-background">Matrimonio</option>
@@ -68,10 +98,12 @@ const ContactSection = () => {
           </div>
           <input
             type="date"
+            name="data_evento"
             placeholder="Data evento"
             className="input-neon w-full"
           />
           <textarea
+            name="messaggio"
             placeholder="Raccontami il tuo evento..."
             rows={4}
             className="input-neon w-full resize-none"
@@ -85,6 +117,8 @@ const ContactSection = () => {
           >
             {submitted ? (
               "Messaggio Inviato ✓"
+            ) : error ? (
+              "Errore — riprova più tardi"
             ) : (
               <>
                 Invia Richiesta

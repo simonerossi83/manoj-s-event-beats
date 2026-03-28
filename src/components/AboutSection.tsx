@@ -19,7 +19,7 @@ const AboutSection = () => {
             <div className="relative rounded-2xl overflow-hidden event-card">
               <img
                 src={portraitImg}
-                alt="DJ manoy portrait"
+                alt="DJ Amery – ritratto del DJ professionista italiano"
                 className="w-full aspect-[3/4] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
@@ -32,22 +32,29 @@ const AboutSection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="label-uppercase text-primary mb-4">Chi Sono</p>
-            <h2 className="h2-section text-foreground mb-8">
+            <h2 className="h2-section text-foreground mb-4">
               La musica è la mia <span className="gradient-text">voce</span>
             </h2>
+            <p className="text-primary/70 font-light mb-8 text-base">
+              DJ Amery — DJ professionista per eventi di piazza, matrimoni e feste private in Lombardia e Nord Italia.
+            </p>
             <div className="space-y-6 text-muted-foreground font-light leading-relaxed">
               <p>
-                Oltre 10 anni dietro la consolle, centinaia di eventi e una sola missione:
-                far ballare tutti. Dalle piazze gremite ai matrimoni più eleganti, ogni set
-                è un viaggio sonoro costruito su misura.
+                Oltre 10 anni dietro la consolle, più di 500 eventi all'attivo e una sola missione:
+                creare esperienze musicali indimenticabili. Dalle piazze gremite della Lombardia
+                e del Nord Italia ai matrimoni più eleganti, ogni set è un viaggio sonoro costruito
+                su misura per il pubblico e per il momento.
               </p>
               <p>
-                Il mio stile? Un mix esplosivo di hit internazionali, classici intramontabili
-                e sonorità elettroniche che si adattano a qualsiasi pubblico. Leggo la pista,
+                Lo stile di DJ Amery è un mix calibrato di hit internazionali, classici
+                intramontabili e sonorità elettroniche — Dance, House, Pop e R&B —
+                capaci di adattarsi a qualsiasi pubblico ed età. Leggo la pista,
                 sento l'energia e la trasformo in ritmo puro.
               </p>
               <p>
-                Non sono solo una DJ. Sono l'architetto della serata perfetta.
+                Che si tratti del tuo matrimonio, di una festa di piazza o di un compleanno
+                esclusivo, DJ Amery è il partner che trasforma ogni serata in un evento leggendario.
+                Disponibile in tutta la Lombardia e nel Nord Italia.
               </p>
             </div>
 

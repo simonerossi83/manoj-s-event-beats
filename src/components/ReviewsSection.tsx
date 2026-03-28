@@ -6,25 +6,25 @@ const reviews = [
   {
     name: "Marco & Giulia",
     event: "Matrimonio",
-    text: "DJ manoy ha reso il nostro matrimonio indimenticabile. Dal primo ballo all'ultima canzone, tutti i nostri ospiti non hanno mai smesso di ballare!",
+    text: "DJ Amery ha reso il nostro matrimonio indimenticabile. Dal primo ballo all'ultima canzone, tutti i nostri ospiti non hanno mai smesso di ballare. Una scelta che rifaremmo mille volte!",
     rating: 5,
   },
   {
     name: "Comune di Rivalta",
     event: "Festa di Piazza",
-    text: "Una professionista eccezionale. Ha gestito un pubblico di 3000 persone con una naturalezza incredibile. La piazza non ha mai ballato così.",
+    text: "Un DJ professionista eccezionale. Ha gestito un pubblico di oltre 3.000 persone con energia e naturalezza incredibile. La piazza non aveva mai ballato così — torneremo a chiamarla ogni anno.",
     rating: 5,
   },
   {
     name: "Alessandra P.",
     event: "Festa Privata",
-    text: "Il mio 30° compleanno è stato il party dell'anno grazie a DJ manoy. Set perfetto, luci spettacolari e un'energia contagiosa.",
+    text: "Il mio 30° compleanno è stato il party dell'anno grazie a DJ Amery. Set perfetto, selezione musicale impeccabile e un'energia contagiosa che ha coinvolto tutti, dai 20 agli 80 anni.",
     rating: 5,
   },
   {
     name: "Luca & Francesca",
     event: "Matrimonio",
-    text: "Ci hanno consigliato DJ manoy e non potevamo fare scelta migliore. Professionale, attenta ai dettagli e con un gusto musicale impeccabile.",
+    text: "Ci hanno consigliato DJ Amery e non potevamo fare scelta migliore. Puntuale, professionale, attenta ai dettagli e con un gusto musicale straordinario. Il nostro matrimonio è stato perfetto.",
     rating: 5,
   },
 ];
@@ -44,8 +44,12 @@ const ReviewsSection = () => {
         >
           <p className="label-uppercase text-primary mb-4">Recensioni</p>
           <h2 className="h2-section text-foreground">
-            Dicono di <span className="gradient-text">me</span>
+            Cosa dicono i <span className="gradient-text">clienti</span>
           </h2>
+          <p className="text-muted-foreground font-light mt-4 max-w-xl mx-auto">
+            Più di 500 eventi, centinaia di spose, sindaci e festeggiati soddisfatti.
+            Leggi le esperienze di chi ha scelto DJ Amery per il proprio evento speciale.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">

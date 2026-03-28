@@ -75,8 +75,10 @@ const MusicSection = () => {
           <p className="label-uppercase text-primary mb-4">Ascolta</p>
           <h2 className="h2-section text-foreground">
             Senti il <span className="gradient-text">beat</span>
-          </h2>
-        </motion.div>
+          </h2>          <p className="text-muted-foreground font-light mt-4 max-w-xl mx-auto">
+            Un mix tra Dance, House, Electronic, Pop internazionale e R&B. Ogni traccia è scelta
+            per creare la giusta energia — dal warm-up all'apice della serata.
+          </p>        </motion.div>
 
         <div className="space-y-3">
           {tracks.map((track, index) => (
@@ -138,7 +140,7 @@ const MusicSection = () => {
           transition={{ delay: 0.8 }}
           className="text-center text-muted-foreground/50 text-sm mt-8 font-light"
         >
-          Clicca su un brano per ascoltarlo · Contattami per il set completo
+          Clicca su un brano per ascoltarlo · Contattami per scoprire il set completo per il tuo evento
         </motion.p>
       </div>
     </section>
