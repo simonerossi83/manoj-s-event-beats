@@ -29,8 +29,8 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          server: ${{ secrets.FTP_host }}
+          username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /htdocs/  # o la cartella root del tuo dominio su Tophost
