@@ -1,15 +1,17 @@
+# .github/workflows/deploy.yml
 name: Deploy to Tophost
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main  # o master, il tuo branch principale
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -21,16 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build
         run: npm run build
 
-      - name: Deploy to FTP (Tophost)
+      - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /htdocs/
-          state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: false
+          server-dir: /htdocs/  # o la cartella root del tuo dominio su Tophost
