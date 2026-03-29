@@ -23,4 +23,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://rosai.github.io/manoy-s-event-beats/sitemap.xml
+Sitemap: https://www.musicadjeventi.it/sitemap.xml
