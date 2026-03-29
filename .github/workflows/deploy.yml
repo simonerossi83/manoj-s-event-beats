@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -37,7 +37,7 @@ jobs:
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
           FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
-          REMOTE_DIR: /htdocs/
+          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR || '/htdocs/' }}
         run: |
           test -n "$FTP_HOST" || (echo "Missing secret: FTP_SERVER or FTP_HOST" && exit 1)
           test -n "$FTP_USER" || (echo "Missing secret: FTP_USERNAME or FTP_USER" && exit 1)
@@ -59,8 +59,10 @@ jobs:
           set net:timeout 20
           set dns:order inet
           set ftp:passive-mode true
-          set ftp:ssl-allow $SSL_FORCE
+          set ftp:prefer-epsv false
+          set ftp:ssl-allow true
           set ftp:ssl-force $SSL_FORCE
+          set ftp:ssl-protect-data $SSL_FORCE
           set ssl:verify-certificate false
           mirror --reverse --delete --verbose ./dist/ "$REMOTE_DIR"
           bye
