@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main  # o master, il tuo branch principale
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -29,8 +30,13 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_host }}
-          username: ${{ secrets.FTP_USER }}
+          server: ${{ secrets.FTP_SERVER || secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME || secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL || 'ftp' }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          security: ${{ secrets.FTP_SECURITY || 'loose' }}
+          log-level: verbose
           local-dir: ./dist/
           server-dir: /htdocs/  # o la cartella root del tuo dominio su Tophost
+          state-name: .ftp-deploy-sync-state.json
