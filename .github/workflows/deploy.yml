@@ -27,16 +27,41 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER || secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME || secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ secrets.FTP_PROTOCOL || 'ftp' }}
-          port: ${{ secrets.FTP_PORT || 21 }}
-          security: ${{ secrets.FTP_SECURITY || 'loose' }}
-          log-level: verbose
-          local-dir: ./dist/
-          server-dir: /htdocs/  # o la cartella root del tuo dominio su Tophost
-          state-name: .ftp-deploy-sync-state.json
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy via FTP (lftp)
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER || secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USERNAME || secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
+          REMOTE_DIR: /htdocs/
+        run: |
+          test -n "$FTP_HOST" || (echo "Missing secret: FTP_SERVER or FTP_HOST" && exit 1)
+          test -n "$FTP_USER" || (echo "Missing secret: FTP_USERNAME or FTP_USER" && exit 1)
+          test -n "$FTP_PASS" || (echo "Missing secret: FTP_PASSWORD" && exit 1)
+
+          PORT="${FTP_PORT:-21}"
+          PROTOCOL="${FTP_PROTOCOL:-ftp}"
+
+          if [ "$PROTOCOL" = "ftps" ]; then
+            SSL_FORCE="true"
+          else
+            SSL_FORCE="false"
+          fi
+
+          lftp -d -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" -p "$PORT" <<EOF
+          set cmd:fail-exit true
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          set net:timeout 20
+          set dns:order inet
+          set ftp:passive-mode true
+          set ftp:ssl-allow $SSL_FORCE
+          set ftp:ssl-force $SSL_FORCE
+          set ssl:verify-certificate false
+          mirror --reverse --delete --verbose ./dist/ "$REMOTE_DIR"
+          bye
+          EOF
